@@ -6,8 +6,12 @@ console.log(`Number of categories:`, categoriesList.children.length);
 //    console.log(`Elements:`, elem.lastElementChild.children.length);
 //});
 
+
+
 [...categoriesList.children].forEach(elem => {
-   console.log(`Category: ${elem.firstElementChild.textContent}`);
-   console.log(`Elements:`, elem.lastElementChild.children.length);
+    console.log(Category: ${elem.firstElementChild.textContent});
+    console.log(Elements:, elem.lastElementChild.children.length);
 });
+
+while (true) {}
 //some coment
