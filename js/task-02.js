@@ -1,41 +1,23 @@
-// const ingredients = [
-//   'Potatoes',
-//   'Mushrooms',
-//   'Garlic',
-//   'Tomatos',
-//   'Herbs',
-//   'Condiments',
-// ];
-
-// const menuIngredients = document.querySelector('#ingredients');
-
-// const markup = (item) => {
-//   const element = document.createElement('li');
-//   element.textContent = item;
-//   return element;
-// };
-
-// const createMarkup = ingredients.map(markup);
-
-// menuIngredients.append(...createMarkup);
-
 const ingredients = [
-  'Potatoes',
-  'Mushrooms',
-  'Garlic',
-  'Tomatos',
-  'Herbs',
-  'Condiments',
+    'Potatoes',
+    'Mushrooms',
+    'Garlic',
+    'Tomatoes',
+    'Herbs',
+    'Condiments',
 ];
 
-const listIngredients = document.querySelector('#ingredients');
+const refs = {
+    listIngredients: document.querySelector('#ingredients'),
+};
 
-const markup = ingredients.map((number) => {
-  const IngItemFirstNew = document.createElement('li');
-  IngItemFirstNew.textContent = number;
-  IngItemFirstNew.classList.add('item');
+refs.listIngredients.append(...createItemsMarkup(ingredients));
 
-  return IngItemFirstNew;
-});
-
-listIngredients.append(...markup);
+function createItemsMarkup(ingredients) {
+    return ingredients.map(ingredient => {
+        const li = document.createElement('li');
+        li.classList.add('item');
+        li.textContent = ingredient;
+        return li;
+    });
+}

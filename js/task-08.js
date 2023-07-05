@@ -1,27 +1,19 @@
-const form = document.querySelector('.login-form');
-
-const onSubmit = (event) => {
-  event.preventDefault();
-
-  const { email, password } = event.currentTarget.elements;
-
-  if (!email.value || !password.value)
-    return alert('Все поля должны быть заполнены!');
-
-  const formData = new FormData(event.currentTarget);
-  formData.forEach((email, password) => console.log(`${email} : ${password}`));
-
-  // const email = form.elements.email.value;
-  // const password = form.elements.password.value;
-
-  // if (!email || !password) return alert('Все поля должны быть заполнены!');
-
-  // console.log({
-  //   email,
-  //   password,
-  // });
-
-  event.target.reset();
+const refs = {
+    loginForm: document.querySelector('.login-form'),
 };
 
-form.addEventListener('submit', onSubmit);
+refs.loginForm.addEventListener('submit', onLoginFormSubmit);
+
+//TODO тут была ошибка, без .value перед trim()
+function onLoginFormSubmit(event) {
+    event.preventDefault();
+    const { email, password } = event.currentTarget.elements;
+    const emailValue = email.value.trim();
+    const passwordValue = password.value.trim();
+    if (!emailValue || !passwordValue) {
+        alert('Не всі поля заповнені');
+        return;
+    }
+    console.log({ email: emailValue, password: passwordValue });
+    event.target.reset();
+}

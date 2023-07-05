@@ -1,14 +1,16 @@
-const validationInput = document.querySelector('#validation-input');
-const validNumber = parseInt(validationInput.dataset.length);
+const input = document.querySelector('#validation-input');
 
-const onInput = (event) => {
-  const userValue = event.target.value.trim().length;
-  validationInput.classList.add('invalid');
+input.addEventListener('blur', onInputBlur);
 
-  if (userValue === validNumber) {
-    return validationInput.classList.replace('invalid', 'valid');
-  }
-  return validationInput.classList.replace('valid', 'invalid');
-};
+function onInputBlur(event) {
+    const inputValueLength = event.target.value.length;
+    const inputLength = Number(event.target.dataset.length);
 
-validationInput.addEventListener('input', onInput);
+    if (inputValueLength === inputLength) {
+        input.classList.add('valid');
+        input.classList.remove('invalid');
+    } else {
+        input.classList.add('invalid');
+        input.classList.remove('valid');
+    }
+}

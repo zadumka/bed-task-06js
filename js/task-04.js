@@ -1,15 +1,17 @@
-// const incrementBtn = document.querySelector('button[data-action="increment"]');
-// const decrementBtn = document.querySelector('button[data-action="decrement"]');
-// const span = document.querySelector('#value');
-// let counterValue = 0;
+const refs = {
+    output: document.querySelector('#value'),
+    incrementButton: document.querySelector('[data-action="increment"]'),
+    decrementButton: document.querySelector('[data-action="decrement"]'),
+};
 
-// const onIncrement = () => {
-//   span.textContent = counterValue += 1;
-// };
+let counterValue = 0;
 
-// const onDecrement = () => {
-//   span.textContent = counterValue -= 1;
-// };
+refs.incrementButton.addEventListener('click', () => {
+    counterValue += 1;
+    refs.output.textContent = counterValue;
+});
 
-// incrementBtn.addEventListener('click', onIncrement);
-// decrementBtn.addEventListener('click', onDecrement);
+refs.decrementButton.addEventListener('click', () => {
+    counterValue -= 1;
+    refs.output.textContent = counterValue;
+});

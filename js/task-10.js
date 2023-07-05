@@ -1,53 +1,45 @@
-const control = document.querySelector('#controls');
-const input = document.querySelector('#controls input');
-const renderBtn = document.querySelector('button[data-create]');
-const destroyBtn = document.querySelector('button[data-destroy]');
-const boxes = document.querySelector('#boxes');
-
-// for (let i = 0; i < amount; i += 1) {
-//   const basicSize = 30;
-//   const biggestSize = basicSize + i * 10;
-//   const box = document.createElement('div');
-//   box.setAttribute(
-//     'style',
-//     `width: ${biggestSize}px; height: ${biggestSize}px; background: ${getRandomHexColor()}`
-//   );
-//   boxes.append(box);
-// }
-
-const createBoxes = (event, amount) => {
-  amount = input.value;
-
-  console.dir(event.target);
-
-  const arr = [];
-  arr.length = amount;
-
-  arr.fill(amount).map((item, index) => {
-    const baseSize = 30;
-    const biggestSize = baseSize + index * 10;
-    const box = document.createElement('div');
-    box.setAttribute(
-      'style',
-      `width:${biggestSize}px ;height:${biggestSize}px; background-color:${getRandomHexColor()}`
-    );
-
-    boxes.append(box);
-  });
+const refs = {
+    createMarkupButton: document.querySelector('[data-create]'),
+    destroyMarkupButton: document.querySelector('[data-destroy]'),
+    input: document.querySelector('[type="number"]'),
+    markupContainer: document.querySelector('#boxes'),
 };
 
-const destroyBoxes = () => {
-  input.value = '';
-  boxes.innerHTML = '';
-};
+refs.createMarkupButton.addEventListener('click', onCreateButtonClick);
+refs.destroyMarkupButton.addEventListener('click', onDestroyButtonClick);
 
 function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
+    return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
-renderBtn.addEventListener('click', createBoxes);
-destroyBtn.addEventListener('click', destroyBoxes);
+function onCreateButtonClick() {
+    const inputValue = Number(refs.input.value);
+    if (!(inputValue >= 1 && inputValue <= 100)) {
+        refs.input.value = '';
+        return alert('Введіть, будь ласка, число від 1 до 100');
+    }
+    createBoxes(inputValue);
+    refs.input.value = '';
+}
 
-input.addEventListener('input', (event) => {
-  console.log(event.target.value);
-});
+function onDestroyButtonClick() {
+    destroyBoxes();
+}
+
+function createBoxes(amount) {
+    let size = 30;
+    const elements = [];
+    for (let i = 1; i <= amount; i += 1) {
+        const div = document.createElement('div');
+        div.style.width = `${size}px`;
+        div.style.height = `${size}px`;
+        div.style.backgroundColor = getRandomHexColor();
+        elements.push(div);
+        size += 10;
+    }
+    refs.markupContainer.append(...elements);
+}
+
+function destroyBoxes() {
+    refs.markupContainer.innerHTML = '';
+}
