@@ -5,3 +5,8 @@ console.log(`Number of categories:`, categoriesList.children.length);
 //    console.log(`Category: ${elem.firstElementChildtext.Content}`);
 //    console.log(`Elements:`, elem.lastElementChild.children.length);
 //});
+
+[...categoriesList.children].forEach(elem => {
+   console.log(`Category: ${elem.firstElementChildtext.Content}`);
+   console.log(`Elements:`, elem.lastElementChild.children.length);
+});
