@@ -10,3 +10,4 @@ console.log(`Number of categories:`, categoriesList.children.length);
    console.log(`Category: ${elem.firstElementChild.textContent}`);
    console.log(`Elements:`, elem.lastElementChild.children.length);
 });
+//some coment
